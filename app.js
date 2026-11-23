@@ -18,7 +18,7 @@
   paginas.inicio = function () {
     return '<p class="kicker">Economia comportamental aplicada ao serviço público</p>' +
       '<h1 class="h1" tabindex="-1">Vieses comportamentais: como as pessoas realmente decidem</h1>' +
-      '<p class="lead">As pessoas não decidem como um calculador perfeito. Decidem com atalhos, hábitos, emoções e pelo que está à frente delas. Entender isso ajuda a desenhar serviços públicos que funcionam para o cidadão como ele é.</p>' +
+      '<p class="lead">As pessoas não decidem como uma calculadora perfeita. Decidem com atalhos, hábitos e emoções, e pelo que está à frente delas no momento. Entender isso ajuda a desenhar serviços públicos que funcionam para o cidadão como ele é.</p>' +
       '<div class="quote">Quem desenha um serviço também desenha uma decisão. A pergunta é se ele a desenhou de propósito.</div>' +
       '<h2 class="sec">O que você encontra aqui</h2>' +
       '<div class="grid3">' +
@@ -28,7 +28,7 @@
       "</div>" +
       '<h2 class="sec">Por que isso importa para quem desenha serviços</h2>' +
       '<div class="card gold"><p>Formulários longos, prazos pouco claros, opções demais e mensagens confusas causam desistência, erro e retrabalho. Boa parte desses problemas não é falta de informação, e sim de desenho: o serviço ignora como as pessoas decidem na prática, cansadas, com pressa e no celular.</p>' +
-      "<p>A economia comportamental oferece um vocabulário comum e um método para melhorar isso com evidência, em vez de intuição.</p></div>" +
+      "<p>A economia comportamental oferece, para isso, um vocabulário comum e um método que se apoia em evidência, e não apenas em intuição.</p></div>" +
       '<h2 class="sec">Por onde começar</h2>' +
       '<div class="grid2">' +
       '<a class="linkcard" href="#/p/diagnostico"><span class="n">Tenho um problema</span><h3>Diagnóstico rápido</h3><p>Marque os sintomas do seu serviço e veja quais vieses podem estar envolvidos.</p></a>' +
@@ -249,7 +249,7 @@
 
   paginas.metodo = function () {
     return '<p class="kicker">Método</p><h1 class="h1" tabindex="-1">Passo a passo da economia comportamental</h1>' +
-      '<p class="lead">Sete passos da carta 12 do baralho, com a correspondência proposta com o ciclo Test, Learn, Adapt (Haynes et al., 2012) e com o BASIC da OCDE (2019).</p>' +
+      '<p class="lead">Estes são os sete passos da carta 12 do baralho. Ao lado de cada um, este site propõe a correspondência com o ciclo Test, Learn, Adapt (TLA; Haynes et al., 2012) e com o BASIC da OCDE (2019), dois métodos usados por governos.</p>' +
       '<ol class="steps">' + S.passos.map(function (p) {
         return '<li><span class="big">' + p.n + '</span><div><h3>' + p.titulo + "</h3><p>" + p.txt + '</p><p class="meta">TLA: ' + p.tla + " · BASIC: " + p.basic + " · Produto: " + p.produto + "</p></div></li>";
       }).join("") + "</ol>" +
