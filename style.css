@@ -23,6 +23,11 @@ button{font-family:inherit}
 .side-head{padding:22px 20px 16px;border-bottom:1px solid var(--line-ink)}
 .side-head .org{font-size:12px;font-weight:600;color:var(--seal-light);margin:0 0 4px}
 .side-head .title{font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;line-height:1.2;margin:0}
+a.side-home{display:block;text-decoration:none;color:inherit;transition:background .15s}
+a.side-home:hover{background:var(--ink-2)}
+a.side-home:hover .title{color:var(--seal-light)}
+a.side-home:focus-visible{outline:2px solid var(--seal-light);outline-offset:-3px}
+.side-head .org,.side-head .title{display:block}
 .tabs{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line-ink)}
 .tabs a{flex:1;text-align:center;text-decoration:none;font-size:15px;font-weight:600;padding:8px 6px;border:1px solid var(--line-ink);color:var(--paper-soft);border-radius:2px}
 .tabs a[aria-current="page"]{background:var(--seal);color:var(--ink);border-color:var(--seal)}

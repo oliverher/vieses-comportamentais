@@ -24,7 +24,7 @@
   }
 
   var html = "";
-  html += '<div class="side-head"><p class="org">Governo de Goiás</p><p class="title">Vieses Comportamentais</p></div>';
+  html += '<a class="side-head side-home" href="' + base + '#/inicio" title="Ir para a página inicial" aria-label="Governo de Goiás, Vieses Comportamentais: ir para a página inicial"><span class="org">Governo de Goiás</span><span class="title">Vieses Comportamentais</span></a>';
   html += '<div class="tabs" role="navigation" aria-label="Guias do site">' +
     '<a href="index.html"' + (window.PAGE === "guia" ? ' aria-current="page"' : "") + ">Guia</a>" +
     '<a href="baralho.html"' + (window.PAGE === "baralho" ? ' aria-current="page"' : "") + ">Baralho</a></div>";
@@ -64,7 +64,7 @@
       if (!aberto && onGuia && btn.dataset.grp === "pratica") location.hash = "#/pratica";
       return;
     }
-    if (e.target.closest("a[data-route]")) fechar();
+    if (e.target.closest("a[data-route], .side-home")) fechar();
   });
 
   /* marca item ativo e abre o grupo correspondente */
