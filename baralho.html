@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baralho · Vieses Comportamentais</title>
+<meta name="description" content="As 15 cartas do Baralho de Vieses Comportamentais, frente e verso, com busca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<div class="shell">
+  <aside class="side" id="side" aria-label="Barra lateral"></aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="main">
+    <div class="topbar"><button id="menu-btn" type="button" aria-label="Abrir menu">☰ Menu</button><strong>Baralho</strong></div>
+    <main class="wrap" id="conteudo" style="max-width:1180px">
+      <p class="kicker">Guia: Baralho</p>
+      <h1 class="h1" tabindex="-1">Baralho de Vieses Comportamentais</h1>
+      <p class="lead">Economia comportamental em cartas, da InBehavior Lab. Toque em uma carta para ver frente e verso e, em cada uma, siga para a explicação completa no Guia.</p>
+      <div class="bar-tools">
+        <input id="q" type="search" placeholder="Buscar por nome ou conteúdo da carta" aria-label="Buscar cartas">
+        <span class="count" id="count" role="status"></span>
+      </div>
+      <div class="deck" id="grid"></div>
+      <p class="note" id="empty" hidden>Nenhuma carta encontrada.</p>
+      <p class="foot">Baralho de Vieses Comportamentais © 2023 InBehavior Lab (www.inbehaviorlab.com). Transcrição das 15 cartas, frente e verso. As ilustrações são descritas nas notas de cada carta.</p>
+    </main>
+  </div>
+</div>
+
+<dialog id="dlg" aria-label="Carta">
+  <div class="dh"><strong id="dtitle"></strong><button class="btn" id="close" type="button">Fechar</button></div>
+  <div class="stage">
+    <div class="dtabs" role="group" aria-label="Lado da carta">
+      <button class="btn" type="button" data-side="front">Frente</button>
+      <button class="btn" type="button" data-side="back">Verso</button>
+    </div>
+    <div class="pair" id="pair"></div>
+    <div class="dnotes" id="notes"></div>
+    <p style="text-align:center;margin-top:16px"><a class="btn primary" id="saiba" href="index.html">Ler a explicação no Guia</a></p>
+  </div>
+  <div class="dnav">
+    <button class="btn" id="prev" type="button">← Anterior</button>
+    <button class="btn" id="next" type="button">Próxima →</button>
+  </div>
+</dialog>
+
+<script>window.PAGE = "baralho";</script>
+<script src="data.js"></script>
+<script src="shell.js"></script>
+<script src="cartas.js"></script>
+<script src="baralho.js"></script>
+</body>
+</html>
