@@ -193,3 +193,9 @@ dialog::backdrop{background:rgba(10,22,24,.7)}
 @media print{.voltar-wrap{display:none}}
 
 .voltar-wrap[hidden]{display:none}
+
+/* ilustrações das cartas e número no canto */
+.art img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply}
+.front .art{padding:2cqw 0}
+.num-canto{position:absolute;top:3cqw;left:3cqw;width:9cqw;height:9cqw;border-radius:50%;background:var(--ink);color:var(--paper-soft);display:flex;align-items:center;justify-content:center;font:700 4.6cqw 'Source Serif 4',serif;z-index:1}
+.front h3{padding:0 9cqw}

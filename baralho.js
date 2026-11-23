@@ -10,8 +10,8 @@
   function frontHTML(c) {
     var mid = c.frente.itens
       ? "<ol>" + c.frente.itens.map(function (t, i) { return "<li><b>" + (i + 1) + ".</b>" + esc(t) + "</li>"; }).join("") + "</ol>"
-      : '<div class="art" aria-hidden="true"><span>' + c.id + '</span></div><p class="txt">' + esc(c.frente.texto) + "</p>";
-    return '<div class="face front"><div class="inner"><h3>' + esc(c.nome) + "</h3>" + mid + '<div class="brand">InBehavior <i>LAB.</i></div></div></div>';
+      : '<div class="art"><img src="img/carta-' + String(c.id).padStart(2, "0") + '.jpg" alt="' + esc(c.frente.ilustracao || c.nome) + '" loading="lazy" decoding="async" draggable="false"></div><p class="txt">' + esc(c.frente.texto) + "</p>";
+    return '<div class="face front"><div class="inner"><span class="num-canto" aria-hidden="true">' + c.id + "</span><h3>" + esc(c.nome) + "</h3>" + mid + '<div class="brand">InBehavior <i>LAB.</i></div></div></div>';
   }
   function backHTML(c) {
     return '<div class="face back"><div class="inner"><h3>' + esc(c.nome) + '</h3><div class="body">' +
