@@ -175,3 +175,14 @@ dialog::backdrop{background:rgba(10,22,24,.7)}
   .grid2,.grid3{grid-template-columns:1fr}
 }
 @media print{.side,.topbar{display:none}.main{margin:0}}
+
+/* botão voltar */
+.voltar-wrap{max-width:860px;margin:0 auto;padding:22px 32px 0}
+.voltar-wrap.wide{max-width:1180px}
+.voltar{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;cursor:pointer;color:var(--trust);font-size:14px;font-weight:600;padding:4px 6px;border-radius:2px}
+.voltar:hover{color:var(--seal)}
+.voltar:focus-visible{outline:2px solid var(--seal);outline-offset:3px}
+.voltar+*{margin:0}
+.voltar-wrap+.wrap{padding-top:18px}
+@media (max-width:900px){.voltar-wrap{padding:16px 18px 0}}
+@media print{.voltar-wrap{display:none}}

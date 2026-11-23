@@ -85,3 +85,9 @@
     }
   };
 })();
+
+/* Botão "Voltar": página anterior do histórico; sem histórico, vai ao início do Guia. */
+document.getElementById("voltar").addEventListener("click", function () {
+  if (window.history.length > 1) window.history.back();
+  else location.href = "index.html";
+});
