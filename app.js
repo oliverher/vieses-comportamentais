@@ -288,6 +288,8 @@
     el.innerHTML = html;
     if (init) init();
     window.marcarMenu(h);
+    var vw = document.querySelector(".voltar-wrap");
+    if (vw) vw.hidden = (h === "inicio");
     var t = $("h1", el);
     window.scrollTo(0, 0);
     if (t) { t.focus({ preventScroll: true }); }
