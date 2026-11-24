@@ -21,10 +21,11 @@
       '<p class="lead">As pessoas não decidem como uma calculadora perfeita. Decidem com atalhos, hábitos e emoções, e pelo que está à frente delas no momento. Entender isso ajuda a desenhar serviços públicos que funcionam para o cidadão como ele é.</p>' +
       '<div class="quote">Quem desenha um serviço também desenha uma decisão. A pergunta é se ele a desenhou de propósito.</div>' +
       '<h2 class="sec">O que você encontra aqui</h2>' +
-      '<div class="grid3">' +
-      '<div class="card"><span class="tag">1 · Entender</span><h3>14 conceitos</h3><p>Cada viés com explicação simples, um estudo de apoio e um exemplo de serviço público.</p></div>' +
-      '<div class="card"><span class="tag">2 · Aplicar</span><h3>Ferramentas</h3><p>Diagnóstico rápido, auditoria da jornada, checklists EAST e MINDSPACE, calculadora de amostra e teste ético.</p></div>' +
-      '<div class="card"><span class="tag">3 · Testar</span><h3>Método</h3><p>Sete passos para observar, criar, testar, medir e divulgar resultados, inclusive os que não deram certo.</p></div>' +
+      '<div class="grid2">' +
+      '<a class="linkcard" href="#/g/base"><span class="n">1 · Entender</span><h3>14 conceitos</h3><p>Cada viés com explicação simples, um estudo de apoio e um exemplo de serviço público.</p></a>' +
+      '<a class="linkcard" href="#/fundamentos"><span class="n">2 · Aprofundar</span><h3>Ciências comportamentais</h3><p>Modelos como o COM-B, arquitetura de escolhas na prática, ética e o que se sabe sobre servidores públicos.</p></a>' +
+      '<a class="linkcard" href="#/metodologias"><span class="n">3 · Estruturar</span><h3>Metodologias de aplicação</h3><p>O TESTE em cinco fases, comparado ao BASIC, ao CINCO e a outras, com cuidados de rigor e um exemplo.</p></a>' +
+      '<a class="linkcard" href="#/pratica"><span class="n">4 · Aplicar</span><h3>Ferramentas por fase</h3><p>Onze ferramentas, de target statements e barreiras COM-B ao piloto, à calculadora de amostra e ao checklist de ampliação.</p></a>' +
       "</div>" +
       '<h2 class="sec">Por que isso importa para quem desenha serviços</h2>' +
       '<div class="card gold"><p>Formulários longos, prazos pouco claros, opções demais e mensagens confusas causam desistência, erro e retrabalho. Boa parte desses problemas não é falta de informação, e sim de desenho: o serviço ignora como as pessoas decidem na prática, cansadas, com pressa e no celular.</p>' +
@@ -33,7 +34,8 @@
       '<div class="grid2">' +
       '<a class="linkcard" href="#/p/diagnostico"><span class="n">Tenho um problema</span><h3>Diagnóstico rápido</h3><p>Marque os sintomas do seu serviço e veja quais vieses podem estar envolvidos.</p></a>' +
       '<a class="linkcard" href="#/g/base"><span class="n">Quero entender</span><h3>Como pensamos</h3><p>Comece pelos atalhos mentais e pelos dois modos de pensar.</p></a>' +
-      '<a class="linkcard" href="#/metodo"><span class="n">Quero testar</span><h3>Passo a passo do método</h3><p>Do olhar novo ao relatório de resultados.</p></a>' +
+      '<a class="linkcard" href="#/metodologias"><span class="n">Quero conduzir um projeto</span><h3>Metodologias de aplicação</h3><p>Das cinco fases do TESTE ao relatório de resultados.</p></a>' +
+      '<a class="linkcard" href="#/fundamentos"><span class="n">Quero ir mais fundo</span><h3>Ciências comportamentais</h3><p>Modelos, evidências, ética e o contexto do serviço público.</p></a>' +
       '<a class="linkcard" href="baralho.html"><span class="n">Quero jogar</span><h3>Baralho de vieses</h3><p>As 15 cartas da InBehavior Lab, frente e verso, em uma guia própria.</p></a>' +
       "</div>" +
       '<h2 class="sec">Os quatro blocos</h2><div class="grid2">' +
@@ -201,6 +203,10 @@
       '<p>Para comparar duas proporções com 5% de significância e poder de 80%. Informe a taxa atual e a taxa que você espera alcançar.</p>' +
       '<label class="f" for="p1">Taxa atual (%)</label><input id="p1" type="number" min="0.1" max="99" step="0.1" value="30">' +
       '<label class="f" for="p2">Taxa esperada (%)</label><input id="p2" type="number" min="0.1" max="99" step="0.1" value="35">' +
+      '<h3 style="margin-top:22px">Se a alocação for por equipes</h3>' +
+      '<p>Quando equipes inteiras vão para um grupo, colegas se parecem entre si e a amostra efetiva diminui. Informe o tamanho médio da equipe e a correlação entre colegas (ICC). Sem estimativa, teste valores como 0,02 a 0,10.</p>' +
+      '<label class="f" for="p3">Pessoas por equipe</label><input id="p3" type="number" min="1" max="500" step="1" value="1">' +
+      '<label class="f" for="p4">Correlação entre colegas (ICC)</label><input id="p4" type="number" min="0" max="0.9" step="0.01" value="0.05">' +
       '<div class="result" id="amostra" aria-live="polite"></div>' +
       '<p class="note" style="margin-top:12px">Fórmula: n = 2 × (1,96 + 0,84)² × p(1 − p) ÷ Δ², com p igual à média das duas proporções e Δ a diferença a detectar. Efeitos reais de unidades de governo costumam ser pequenos (DellaVigna e Linos, 2022): planeje com uma diferença realista.</p>';
   };
@@ -213,8 +219,13 @@
       var n = Math.ceil(2 * Math.pow(1.96 + 0.84, 2) * p * (1 - p) / (d * d));
       out.innerHTML = "<strong>" + n.toLocaleString("pt-BR") + "</strong> pessoas por grupo<br>Total para dois grupos: " + (2 * n).toLocaleString("pt-BR") + ". " +
         (n > 5000 ? '<span class="warn">Amostra grande: avalie se a diferença esperada é realista ou se dá para medir um desfecho mais sensível.</span>' : '<span class="ok">Dentro do alcance de um piloto em serviço com bom volume.</span>');
+      var m = parseFloat($("#p3").value), icc = parseFloat($("#p4").value);
+      if (m > 1 && icc >= 0) {
+        var def = 1 + (m - 1) * icc, nc = Math.ceil(n * def), eq = Math.ceil(nc / m);
+        out.innerHTML += "<br><br>Com equipes de " + m + " pessoas e ICC de " + icc.toString().replace(".", ",") + ": efeito de desenho de " + def.toFixed(2).replace(".", ",") + ", ou seja, " + nc.toLocaleString("pt-BR") + " pessoas por grupo, cerca de <strong style=\"font-size:22px\">" + eq.toLocaleString("pt-BR") + "</strong> equipes por grupo. Aproximação; consulte um estatístico.";
+      }
     }
-    $("#p1").addEventListener("input", calc); $("#p2").addEventListener("input", calc); calc();
+    ["p1", "p2", "p3", "p4"].forEach(function (i) { $("#" + i).addEventListener("input", calc); }); calc();
   };
 
   ferramentas.etica = function () {
@@ -279,7 +290,9 @@
     var h = location.hash.replace(/^#\/?/, "") || "inicio";
     var html, init;
     var m;
-    if ((m = h.match(/^g\/(.+)$/))) html = paginas.grupo(m[1]);
+    var ex = window.EXTRA && window.EXTRA.render(h);
+    if (ex) { html = ex.html; init = ex.init; }
+    else if ((m = h.match(/^g\/(.+)$/))) html = paginas.grupo(m[1]);
     else if ((m = h.match(/^v\/(.+)$/))) html = paginas.vies(m[1]);
     else if (h === "pratica") html = paginas.pratica();
     else if ((m = h.match(/^p\/(.+)$/))) { html = paginas.ferramenta(m[1]); init = ferramentas[m[1] + "Init"]; }

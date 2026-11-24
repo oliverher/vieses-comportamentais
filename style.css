@@ -199,3 +199,13 @@ dialog::backdrop{background:rgba(10,22,24,.7)}
 .front .art{padding:2cqw 0}
 .num-canto{position:absolute;top:3cqw;left:3cqw;width:9cqw;height:9cqw;border-radius:50%;background:var(--ink);color:var(--paper-soft);display:flex;align-items:center;justify-content:center;font:700 4.6cqw 'Source Serif 4',serif;z-index:1}
 .front h3{padding:0 9cqw}
+
+/* editores e formulários das ferramentas */
+table.ed input[type=text],table.ed textarea,table.ed select,.card textarea,.card select{width:100%;font:inherit;font-size:14px;padding:7px 8px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:2px}
+table.ed textarea,.card textarea{resize:vertical;min-height:54px}
+table.ed select.num5{width:64px}
+table.ed td{min-width:90px;padding:6px}
+table.ed td:first-child{min-width:150px}
+.card .f{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+.sec+.note{margin-top:-4px}
+.card ul{margin:0}

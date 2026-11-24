@@ -2,12 +2,30 @@
 (function () {
   var S = window.SITE;
   var PRATICA = [
-    ["diagnostico", "Diagnóstico rápido"],
-    ["auditoria", "Auditoria da jornada"],
-    ["east", "Checklist EAST"],
-    ["mindspace", "Checklist MINDSPACE"],
-    ["piloto", "Ficha de piloto e amostra"],
-    ["etica", "Teste ético"]
+    ["target", "1 · Target statements"],
+    ["diagnostico", "1 · Diagnóstico rápido"],
+    ["csd", "2 · Quadro CSD"],
+    ["barreiras", "2 · Barreiras COM-B"],
+    ["auditoria", "2 · Auditoria da jornada"],
+    ["east", "3 · Checklist EAST"],
+    ["mindspace", "3 · Checklist MINDSPACE"],
+    ["ideias", "3 · Priorizador de ideias"],
+    ["etica", "3 · Teste ético"],
+    ["piloto", "4 · Ficha de piloto e amostra"],
+    ["scale", "5 · Checklist SCALE"]
+  ];
+  var FUND = [
+    ["f/ciencia", "Panorama"],
+    ["f/comportamento", "Como o comportamento muda"],
+    ["f/arquitetura", "Arquitetura de escolhas"],
+    ["f/etica", "Ética e legitimidade"],
+    ["f/setor-publico", "Dentro do serviço público"],
+    ["f/equipes", "Engajamento e equipes"]
+  ];
+  var METOD = [
+    ["m/teste", "TESTE em cinco fases"],
+    ["m/rigor", "Cuidados na fase Testar"],
+    ["m/exemplo", "Exemplo aplicado"]
   ];
   window.PRATICA = PRATICA;
   var onGuia = !!window.IS_GUIA;
@@ -36,10 +54,14 @@
       .map(function (v) { return link("v/" + v.slug, v.nome, '<span class="num">' + String(v.carta).padStart(2, "0") + "</span>"); }).join("");
     html += grupo(g.id, g.nome, g.resumo, itens);
   });
+  html += '<div class="sec-label">CIÊNCIAS COMPORTAMENTAIS</div>';
+  html += grupo("fundamentos", "Fundamentos", "Modelos, evidências e ética: como o comportamento muda e o que se sabe sobre intervir.",
+    FUND.map(function (p) { return link(p[0], p[1]); }).join(""));
   html += '<div class="sec-label">NA PRÁTICA</div>';
-  html += grupo("pratica", "Ferramentas", "Instrumentos para diagnosticar, desenhar e testar melhorias em serviços.",
+  html += grupo("metodologias", "Metodologias", "TESTE, BASIC, CINCO e outras: como estruturar um projeto de aplicação.",
+    METOD.map(function (p) { return link(p[0], p[1]); }).join("") + link("metodo", "Os sete passos do baralho"));
+  html += grupo("pratica", "Ferramentas por fase", "Instrumentos para diagnosticar, desenhar e testar melhorias, organizados pelas fases do projeto.",
     PRATICA.map(function (p) { return link("p/" + p[0], p[1]); }).join(""));
-  html += link("metodo", "Passo a passo do método");
   html += '<div class="sec-label">APROFUNDAR</div>';
   html += link("limites", "Limites da evidência");
   html += link("referencias", "Referências");
@@ -60,8 +82,8 @@
       var aberto = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", aberto ? "false" : "true");
       document.getElementById(btn.getAttribute("aria-controls")).classList.toggle("open", !aberto);
-      if (!aberto && onGuia && btn.dataset.grp !== "pratica") location.hash = "#/g/" + btn.dataset.grp;
-      if (!aberto && onGuia && btn.dataset.grp === "pratica") location.hash = "#/pratica";
+      var landing = { pratica: 1, fundamentos: 1, metodologias: 1 };
+      if (!aberto && onGuia) location.hash = landing[btn.dataset.grp] ? "#/" + btn.dataset.grp : "#/g/" + btn.dataset.grp;
       return;
     }
     if (e.target.closest("a[data-route], .side-home")) fechar();
@@ -78,7 +100,8 @@
     if (alvo && alvo.closest(".sub")) grpId = alvo.closest(".sub").id.replace("sub-", "");
     var m = rota.match(/^g\/(.+)$/);
     if (m) grpId = m[1];
-    if (rota === "pratica") grpId = "pratica";
+    if (rota === "pratica" || rota === "fundamentos" || rota === "metodologias") grpId = rota;
+    if (rota === "metodo") grpId = "metodologias";
     if (grpId) {
       var b = side.querySelector('[data-grp="' + grpId + '"]');
       if (b) { b.setAttribute("aria-expanded", "true"); document.getElementById("sub-" + grpId).classList.add("open"); }
