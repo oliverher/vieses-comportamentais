@@ -209,3 +209,13 @@ table.ed td:first-child{min-width:150px}
 .card .f{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
 .sec+.note{margin-top:-4px}
 .card ul{margin:0}
+
+/* menu aninhado e trilho */
+.nav .grp-btn.nivel1{padding-left:22px;font-weight:500}
+.nav .grp-btn.nivel2{padding-left:34px;font-weight:500;font-size:13.5px}
+.sub.nivel1{padding-left:6px}
+.sub.nivel2{padding-left:8px}
+.sub.nivel2 a{font-size:13px}
+.crumb{font-size:13.5px;color:var(--ink-soft);margin:0 0 14px}
+.crumb a{color:var(--trust);text-decoration:none}
+.crumb a:hover{text-decoration:underline}

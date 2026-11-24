@@ -72,15 +72,28 @@
 
   /* =================== FUNDAMENTOS =================== */
   R["fundamentos"] = function () {
-    return { html: cab("Fundamentos", "Ciências comportamentais", "Entender como as pessoas decidem e agem é só o começo. Esta área reúne os modelos que explicam por que o comportamento não muda, as ferramentas de desenho que já foram testadas, o que a evidência permite concluir e os limites éticos de usar tudo isso.") +
+    return { html: cab("Entender", "Fundamentos das ciências comportamentais", "Entender como as pessoas decidem e agem é o ponto de partida. Esta área reúne o que explica o comportamento (vieses e modelos), as ferramentas de desenho que já foram testadas, o que a evidência permite concluir e os limites éticos de usar tudo isso.") +
       links([
         ["f/ciencia", "1 · Panorama", "O que são as ciências comportamentais", "Origem, termos e o lugar da administração pública comportamental."],
-        ["f/comportamento", "2 · Modelos", "Como o comportamento muda", "COM-B, roda de mudança de comportamento, técnicas e ABCD."],
-        ["f/arquitetura", "3 · Evidências", "Arquitetura de escolhas na prática", "Padrões, compromisso antecipado, planos, normas e mensagens: o que funcionou e com que cuidado."],
-        ["f/etica", "4 · Limites", "Ética e legitimidade", "Quando um nudge vira manipulação, o que os cidadãos aceitam e como proceder."],
-        ["f/setor-publico", "5 · Contexto", "Dentro do serviço público", "O que se sabe sobre aplicar ciência comportamental a servidores e a órgãos públicos."],
-        ["f/equipes", "6 · Equipes", "Engajamento e colaboração", "Como medir engajamento e o que a literatura diz sobre equipes."]
-      ]) + card("", "<p>Os textos resumem a literatura e citam as fontes. Os exemplos de serviço público são propostas de aplicação, e não resultados empíricos. Os efeitos de intervenções comportamentais costumam ser pequenos e dependem do contexto: veja <a href=\"#/limites\">Limites da evidência</a>.</p>", "gold") };
+        ["f/vieses", "2 · Vieses", "Vieses e atalhos mentais", "14 conceitos em quatro blocos, cada um com estudo de apoio e exemplo de serviço público."],
+        ["f/comportamento", "3 · Modelos", "Como o comportamento muda", "COM-B, roda de mudança de comportamento, técnicas e ABCD."],
+        ["f/arquitetura", "4 · Evidências", "Arquitetura de escolhas na prática", "Padrões, compromisso antecipado, planos, normas e mensagens: o que funcionou e com que cuidado."],
+        ["f/etica", "5 · Limites", "Ética e legitimidade", "Quando um nudge vira manipulação, o que os cidadãos aceitam e como proceder."],
+        ["f/setor-publico", "6 · Contexto", "Dentro do serviço público", "O que se sabe sobre aplicar ciência comportamental a servidores e a órgãos públicos."],
+        ["f/equipes", "7 · Equipes", "Engajamento e colaboração", "Como medir engajamento e o que a literatura diz sobre equipes."],
+        ["limites", "8 · Evidência", "Limites da evidência", "Replicação, tamanho de efeito e o que ainda se discute."]
+      ]) + card("", "<p>Os textos resumem a literatura e citam as fontes. Os exemplos de serviço público são propostas de aplicação, e não resultados empíricos. Os efeitos de intervenções comportamentais costumam ser pequenos e dependem do contexto.</p>", "gold") };
+  };
+
+  R["f/vieses"] = function () {
+    var blocos = S.grupos.map(function (g) {
+      var lista = S.vieses.filter(function (v) { return v.grupo === g.id; });
+      return '<h2 class="sec">' + g.nome + '</h2><p class="note" style="margin-bottom:10px">' + g.resumo + '</p><div class="grid2">' + lista.map(function (v) {
+        return '<a class="linkcard" href="#/v/' + v.slug + '"><span class="n">Carta ' + String(v.carta).padStart(2, "0") + "</span><h3>" + v.nome + "</h3><p>" + v.lema + "</p></a>";
+      }).join("") + "</div>";
+    }).join("");
+    return { html: cab("Fundamentos · 2", "Vieses e atalhos mentais", "Os vieses são padrões previsíveis de como decidimos fora do modelo da calculadora perfeita. Cada conceito traz uma explicação simples, um estudo de apoio, um exemplo de serviço público e uma ferramenta de diagnóstico. Estão em quatro blocos, que seguem as 15 cartas do baralho da InBehavior Lab.") + blocos +
+      '<p style="margin-top:24px"><a class="btn" href="baralho.html">Ver o baralho</a> <a class="btn" href="#/limites">Limites da evidência</a></p>' };
   };
 
   R["f/ciencia"] = function () {
@@ -103,7 +116,7 @@
   };
 
   R["f/comportamento"] = function () {
-    return { html: cab("Fundamentos · 2", "Como o comportamento muda", "Antes de escolher um nudge, é preciso saber o que impede o comportamento. Os modelos abaixo ajudam a descrever o problema e a escolher o tipo de resposta.") +
+    return { html: cab("Fundamentos · 3", "Como o comportamento muda", "Antes de escolher um nudge, é preciso saber o que impede o comportamento. Os modelos abaixo ajudam a descrever o problema e a escolher o tipo de resposta.") +
       '<h2 class="sec">COM-B: capacidade, oportunidade e motivação</h2>' +
       "<p>Michie, van Stralen e West (2011) propõem que um comportamento ocorre quando a pessoa tem <strong>capacidade</strong>, <strong>oportunidade</strong> e <strong>motivação</strong>. Faltando uma delas, o comportamento não acontece. O Behavioural Insights Team usa o COM-B para classificar as barreiras na fase Explorar do TESTE (BIT, 2022).</p>" +
       tabela(["Componente", "Subtipos", "Pergunta de diagnóstico"], [
@@ -145,7 +158,7 @@
   };
 
   R["f/arquitetura"] = function () {
-    return { html: cab("Fundamentos · 3", "Arquitetura de escolhas na prática", "Cada ferramenta abaixo tem estudos que a testaram. O quadro mostra o que se encontrou e o cuidado necessário para generalizar. Nenhum resultado é garantia para o seu serviço: teste antes de ampliar.") +
+    return { html: cab("Fundamentos · 4", "Arquitetura de escolhas na prática", "Cada ferramenta abaixo tem estudos que a testaram. O quadro mostra o que se encontrou e o cuidado necessário para generalizar. Nenhum resultado é garantia para o seu serviço: teste antes de ampliar.") +
       "<p>Johnson et al. (2012) dividem as ferramentas do arquiteto de escolhas em duas famílias: as que <strong>estruturam a tarefa de escolha</strong> (o que apresentar) e as que <strong>descrevem as opções</strong> (como apresentar).</p>" +
       tabela(["Ferramenta", "O que a pesquisa mostrou", "Cuidado"], [
         ["<strong>Opção padrão</strong>", "Com inscrição automática em um plano de poupança, a participação subiu de forma marcante e muitos permaneceram na contribuição e no fundo padrão, que quase ninguém escolhia antes (Madrian e Shea, 2001). Em um órgão público belga, o padrão transparente em estações de trabalho elevou o tempo em pé de 1,8% para 11,3%, e com <em>coaching</em> chegou a 18,8%; o <em>coaching</em> sozinho não teve efeito (Celis et al., 2025). Em mudança organizacional, o padrão funcionou e a recomendação informativa não (Müller, Böhm e Renz, 2023).", "O padrão deve servir ao interesse de quem é afetado. Declarar a intenção aumentou o efeito (Celis et al., 2025). Parte do ganho regride quando a intervenção sai."],
@@ -163,7 +176,7 @@
   };
 
   R["f/etica"] = function () {
-    return { html: cab("Fundamentos · 4", "Ética e legitimidade", "Influenciar decisões é um poder. Para que um serviço público use ciência comportamental com legitimidade, o desenho precisa de transparência, interesse público e possibilidade real de evitar a influência.") +
+    return { html: cab("Fundamentos · 5", "Ética e legitimidade", "Influenciar decisões é um poder. Para que um serviço público use ciência comportamental com legitimidade, o desenho precisa de transparência, interesse público e possibilidade real de evitar a influência.") +
       '<h2 class="sec">O que a literatura discute</h2>' +
       card("Preservar a liberdade de escolha não basta", "<p>Hansen e Jespersen (2013) argumentam que nem todo nudge preserva a liberdade e que o argumento de que “a pessoa é sempre influenciada de qualquer forma” não elimina a responsabilidade de quem intervém de propósito. Propõem um quadro para o uso responsável da abordagem.</p>") +
       card("Transparência e controle democrático", "<p>Schmidt (2017) defende que o poder de nudgear deve ser transparente e sujeito a controle democrático. Para ele, isso é viável do ponto de vista institucional e responde à objeção de controle alheio.</p>") +
@@ -180,7 +193,7 @@
   };
 
   R["f/setor-publico"] = function () {
-    return { html: cab("Fundamentos · 5", "Dentro do serviço público", "Quase todo estudo de nudge em governo fala do cidadão. Aqui estão as evidências sobre os servidores, sobre o ambiente interno dos órgãos e sobre o contexto brasileiro.") +
+    return { html: cab("Fundamentos · 6", "Dentro do serviço público", "Quase todo estudo de nudge em governo fala do cidadão. Aqui estão as evidências sobre os servidores, sobre o ambiente interno dos órgãos e sobre o contexto brasileiro.") +
       '<h2 class="sec">O mapa da literatura</h2>' +
       card("", "<p>Sengik e Maçada (2026) analisaram 54 artigos e examinaram em profundidade os 11 que tratam do ambiente interno das organizações públicas. Predominam intervenções de baixo custo cognitivo (padrões, lembretes, feedback e normas), nos domínios de desempenho, decisão, comunicação e comportamento pró-social interno. Faltam estudos sobre integração das intervenções à organização e sobre a generalização dos resultados.</p>") +
       '<h2 class="sec">Estudos com servidores e trabalhadores</h2>' + tabela(["Estudo", "Contexto", "O que encontrou"], [
@@ -199,7 +212,7 @@
   };
 
   R["f/equipes"] = function () {
-    return { html: cab("Fundamentos · 6", "Engajamento e colaboração em equipes", "Projetos internos dependem de pessoas que colaboram e se engajam. Duas perguntas orientam esta página: como medir o engajamento e o que a literatura diz sobre equipes.") +
+    return { html: cab("Fundamentos · 7", "Engajamento e colaboração em equipes", "Projetos internos dependem de pessoas que colaboram e se engajam. Duas perguntas orientam esta página: como medir o engajamento e o que a literatura diz sobre equipes.") +
       '<h2 class="sec">Medir o engajamento: a UWES</h2>' +
       card("", "<p>O engajamento no trabalho é um estado positivo de realização com três dimensões: vigor, dedicação e absorção. A escala UWES tem versão de 17 itens, que foi reduzida para 9 itens (UWES-9) em dados de 10 países (N = 14.521) e tem propriedades psicométricas aceitáveis (Schaufeli, Bakker e Salanova, 2006). No Brasil, a versão de Porto-Martins e Benevides-Pereira (2008) foi validada com amostras de cinco estudos, N = 1.934 (Porto-Martins e Machado, 2022). Antes de usar a forma curta em português, confirme sua validação.</p>") +
       '<h2 class="sec">O que se sabe sobre engajamento no setor público</h2>' +

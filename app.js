@@ -16,40 +16,35 @@
   var paginas = {};
 
   paginas.inicio = function () {
-    return '<p class="kicker">Economia comportamental aplicada ao serviço público</p>' +
-      '<h1 class="h1" tabindex="-1">Vieses comportamentais: como as pessoas realmente decidem</h1>' +
-      '<p class="lead">As pessoas não decidem como uma calculadora perfeita. Decidem com atalhos, hábitos e emoções, e pelo que está à frente delas no momento. Entender isso ajuda a desenhar serviços públicos que funcionam para o cidadão como ele é.</p>' +
+    return '<p class="kicker">Governo de Goiás · Ciências comportamentais aplicadas ao serviço público</p>' +
+      '<h1 class="h1" tabindex="-1">Ciências comportamentais: como as pessoas decidem e como desenhar serviços melhores</h1>' +
+      '<p class="lead">As pessoas não decidem como uma calculadora perfeita. Decidem com atalhos, hábitos e emoções, e pelo que está à frente delas no momento. Entender isso, e testar o que funciona, ajuda a desenhar serviços públicos para o cidadão como ele é.</p>' +
       '<div class="quote">Quem desenha um serviço também desenha uma decisão. A pergunta é se ele a desenhou de propósito.</div>' +
-      '<h2 class="sec">O que você encontra aqui</h2>' +
-      '<div class="grid2">' +
-      '<a class="linkcard" href="#/g/base"><span class="n">1 · Entender</span><h3>14 conceitos</h3><p>Cada viés com explicação simples, um estudo de apoio e um exemplo de serviço público.</p></a>' +
-      '<a class="linkcard" href="#/fundamentos"><span class="n">2 · Aprofundar</span><h3>Ciências comportamentais</h3><p>Modelos como o COM-B, arquitetura de escolhas na prática, ética e o que se sabe sobre servidores públicos.</p></a>' +
-      '<a class="linkcard" href="#/metodologias"><span class="n">3 · Estruturar</span><h3>Metodologias de aplicação</h3><p>O TESTE em cinco fases, comparado ao BASIC, ao CINCO e a outras, com cuidados de rigor e um exemplo.</p></a>' +
-      '<a class="linkcard" href="#/pratica"><span class="n">4 · Aplicar</span><h3>Ferramentas por fase</h3><p>Onze ferramentas, de target statements e barreiras COM-B ao piloto, à calculadora de amostra e ao checklist de ampliação.</p></a>' +
+      '<div class="card gold"><span class="tag">Tenho um problema</span><h3>Comece pelo diagnóstico rápido</h3><p>Marque os sintomas do seu serviço, como desistência, atraso ou erro nos formulários, e veja quais vieses podem estar envolvidos.</p><p style="margin:0"><a class="btn primary" href="#/p/diagnostico">Fazer o diagnóstico</a></p></div>' +
+      '<h2 class="sec">Três caminhos</h2>' +
+      '<div class="grid3">' +
+      '<a class="linkcard" href="#/fundamentos"><span class="n">1 · Entender</span><h3>Fundamentos</h3><p>Vieses e atalhos mentais, modelos como o COM-B, arquitetura de escolhas, ética e o que se sabe sobre servidores públicos.</p></a>' +
+      '<a class="linkcard" href="#/metodologias"><span class="n">2 · Estruturar</span><h3>Metodologias</h3><p>O TESTE em cinco fases, comparado ao BASIC, ao CINCO e a outras, com cuidados de rigor e um exemplo.</p></a>' +
+      '<a class="linkcard" href="#/pratica"><span class="n">3 · Aplicar</span><h3>Ferramentas por fase</h3><p>Onze ferramentas, de target statements e barreiras COM-B ao piloto, à calculadora de amostra e ao checklist de ampliação.</p></a>' +
       "</div>" +
-      '<h2 class="sec">Por que isso importa para quem desenha serviços</h2>' +
-      '<div class="card gold"><p>Formulários longos, prazos pouco claros, opções demais e mensagens confusas causam desistência, erro e retrabalho. Boa parte desses problemas não é falta de informação, e sim de desenho: o serviço ignora como as pessoas decidem na prática, cansadas, com pressa e no celular.</p>' +
-      "<p>A economia comportamental oferece, para isso, um vocabulário comum e um método que se apoia em evidência, e não apenas em intuição.</p></div>" +
-      '<h2 class="sec">Por onde começar</h2>' +
+      '<h2 class="sec">Dentro de Fundamentos</h2>' +
       '<div class="grid2">' +
-      '<a class="linkcard" href="#/p/diagnostico"><span class="n">Tenho um problema</span><h3>Diagnóstico rápido</h3><p>Marque os sintomas do seu serviço e veja quais vieses podem estar envolvidos.</p></a>' +
-      '<a class="linkcard" href="#/g/base"><span class="n">Quero entender</span><h3>Como pensamos</h3><p>Comece pelos atalhos mentais e pelos dois modos de pensar.</p></a>' +
-      '<a class="linkcard" href="#/metodologias"><span class="n">Quero conduzir um projeto</span><h3>Metodologias de aplicação</h3><p>Das cinco fases do TESTE ao relatório de resultados.</p></a>' +
-      '<a class="linkcard" href="#/fundamentos"><span class="n">Quero ir mais fundo</span><h3>Ciências comportamentais</h3><p>Modelos, evidências, ética e o contexto do serviço público.</p></a>' +
+      '<a class="linkcard" href="#/f/vieses"><span class="n">14 conceitos</span><h3>Vieses e atalhos mentais</h3><p>Cada viés com explicação simples, um estudo de apoio e um exemplo de serviço público, em quatro blocos.</p></a>' +
+      '<a class="linkcard" href="#/f/comportamento"><span class="n">Modelos</span><h3>Como o comportamento muda</h3><p>COM-B, roda de mudança de comportamento e técnicas.</p></a>' +
+      '<a class="linkcard" href="#/limites"><span class="n">Evidência</span><h3>Limites da evidência</h3><p>O que se sabe, o que se discute e que efeito esperar.</p></a>' +
       '<a class="linkcard" href="baralho.html"><span class="n">Quero jogar</span><h3>Baralho de vieses</h3><p>As 15 cartas da InBehavior Lab, frente e verso, em uma guia própria.</p></a>' +
       "</div>" +
-      '<h2 class="sec">Os quatro blocos</h2><div class="grid2">' +
-      S.grupos.map(function (g) {
-        return '<a class="linkcard" href="#/g/' + g.id + '"><h3>' + g.nome + "</h3><p>" + g.resumo + "</p></a>";
-      }).join("") + "</div>" +
-      '<p class="foot">Conteúdo baseado na apostila “Fundamentos teóricos do baralho de vieses comportamentais” e no Baralho de Vieses Comportamentais da InBehavior Lab (© 2023). Os exemplos de serviço público são propostas de aplicação, e não resultados empíricos.</p>';
+      '<h2 class="sec">Por que isso importa para quem desenha serviços</h2>' +
+      '<div class="card"><p>Formulários longos, prazos pouco claros, opções demais e mensagens confusas causam desistência, erro e retrabalho. Boa parte desses problemas não é falta de informação, e sim de desenho: o serviço ignora como as pessoas decidem na prática, cansadas, com pressa e no celular.</p>' +
+      '<p style="margin:0">A ciência comportamental oferece, para isso, um vocabulário comum e um método que se apoia em evidência, e não apenas em intuição.</p></div>' +
+      '<p class="foot">Parte do conteúdo se baseia na apostila “Fundamentos teóricos do baralho de vieses comportamentais” e no Baralho de Vieses Comportamentais da InBehavior Lab (© 2023). Os demais textos resumem a literatura citada em Referências. Os exemplos de serviço público são propostas de aplicação, e não resultados empíricos.</p>';
   };
 
   paginas.grupo = function (id) {
     var g = grupoPorId(id);
     if (!g) return paginas.nada();
     var lista = S.vieses.filter(function (v) { return v.grupo === id; });
-    return '<p class="kicker">Os vieses</p><h1 class="h1" tabindex="-1">' + g.nome + '</h1><p class="lead">' + g.resumo + "</p>" +
+    return '<p class="kicker">Fundamentos · Vieses e atalhos mentais</p><h1 class="h1" tabindex="-1">' + g.nome + '</h1><p class="lead">' + g.resumo + "</p>" +
       '<h2 class="sec">Conceitos deste bloco</h2><div class="grid2">' + lista.map(cardVies).join("") + "</div>";
   };
 
@@ -59,7 +54,7 @@
     var g = grupoPorId(v.grupo);
     var idx = S.vieses.indexOf(v);
     var ant = S.vieses[idx - 1], prox = S.vieses[idx + 1];
-    return '<p class="kicker">' + g.nome + " · Carta " + pad(v.carta) + '</p>' +
+    return '<p class="kicker">Vieses · ' + g.nome + " · Carta " + pad(v.carta) + '</p>' +
       '<h1 class="h1" tabindex="-1">' + v.nome + "</h1>" +
       '<p class="lema">' + v.lema + "</p>" +
       '<h2 class="sec">O que é</h2><p>' + v.explica + "</p>" +
@@ -270,7 +265,7 @@
   };
 
   paginas.limites = function () {
-    return '<p class="kicker">Aprofundar</p><h1 class="h1" tabindex="-1">Limites da evidência</h1>' +
+    return '<p class="kicker">Fundamentos · 8</p><h1 class="h1" tabindex="-1">Limites da evidência</h1>' +
       '<p class="lead">A economia comportamental é um campo vivo. Conhecer o que se sabe e o que ainda se discute faz parte de usá-la bem.</p>' +
       S.limites.map(function (l) { return '<div class="card"><h3>' + l.t + "</h3><p style=\"margin:0\">" + l.p + "</p></div>"; }).join("");
   };
@@ -285,6 +280,18 @@
     return '<h1 class="h1" tabindex="-1">Página não encontrada</h1><p><a class="btn" href="#/inicio">Voltar ao início</a></p>';
   };
 
+  function trilho(h) {
+    var m, itens = null;
+    var F = ["#/fundamentos", "Fundamentos"], V = ["#/f/vieses", "Vieses e atalhos mentais"];
+    if ((m = h.match(/^v\/(.+)$/))) { var v = porSlug(m[1]); if (v) itens = [F, V, ["#/g/" + v.grupo, grupoPorId(v.grupo).nome]]; }
+    else if ((m = h.match(/^g\/(.+)$/))) itens = [F, V];
+    else if (/^f\//.test(h) || h === "limites") itens = [F];
+    else if (/^m\//.test(h) || h === "metodo") itens = [["#/metodologias", "Metodologias"]];
+    else if (/^p\//.test(h)) itens = [["#/pratica", "Ferramentas por fase"]];
+    if (!itens) return "";
+    return '<nav class="crumb" aria-label="Você está em">' + itens.map(function (i) { return '<a href="' + i[0] + '">' + i[1] + "</a>"; }).join(" › ") + "</nav>";
+  }
+
   /* ---------------- roteador ---------------- */
   function rota() {
     var h = location.hash.replace(/^#\/?/, "") || "inicio";
@@ -298,7 +305,7 @@
     else if ((m = h.match(/^p\/(.+)$/))) { html = paginas.ferramenta(m[1]); init = ferramentas[m[1] + "Init"]; }
     else if (paginas[h]) html = paginas[h]();
     else html = paginas.nada();
-    el.innerHTML = html;
+    el.innerHTML = trilho(h) + html;
     if (init) init();
     window.marcarMenu(h);
     var vw = document.querySelector(".voltar-wrap");
@@ -306,7 +313,7 @@
     var t = $("h1", el);
     window.scrollTo(0, 0);
     if (t) { t.focus({ preventScroll: true }); }
-    document.title = (t ? t.textContent + " · " : "") + "Vieses Comportamentais";
+    document.title = (t ? t.textContent + " · " : "") + "Ciências Comportamentais";
   }
   window.addEventListener("hashchange", rota);
   rota();

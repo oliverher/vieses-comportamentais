@@ -16,11 +16,13 @@
   ];
   var FUND = [
     ["f/ciencia", "Panorama"],
+    "VIESES",
     ["f/comportamento", "Como o comportamento muda"],
     ["f/arquitetura", "Arquitetura de escolhas"],
     ["f/etica", "Ética e legitimidade"],
     ["f/setor-publico", "Dentro do serviço público"],
-    ["f/equipes", "Engajamento e equipes"]
+    ["f/equipes", "Engajamento e equipes"],
+    ["limites", "Limites da evidência"]
   ];
   var METOD = [
     ["m/teste", "TESTE em cinco fases"],
@@ -35,35 +37,36 @@
     return '<a href="' + base + "#/" + hash + '" data-route="' + hash + '">' + (extra || "") + "<span>" + text + "</span></a>";
   }
 
-  function grupo(id, nome, resumo, itens) {
-    return '<button class="grp-btn" type="button" aria-expanded="false" aria-controls="sub-' + id + '" data-grp="' + id + '">' +
+  function grupo(id, nome, resumo, itens, nivel) {
+    return '<button class="grp-btn' + (nivel ? " nivel" + nivel : "") + '" type="button" aria-expanded="false" aria-controls="sub-' + id + '" data-grp="' + id + '">' +
       "<span>" + nome + '</span><span class="chev" aria-hidden="true">▸</span></button>' +
-      '<div class="sub" id="sub-' + id + '">' + (resumo ? '<p class="blurb">' + resumo + "</p>" : "") + itens + "</div>";
+      '<div class="sub' + (nivel ? " nivel" + nivel : "") + '" id="sub-' + id + '">' + (resumo ? '<p class="blurb">' + resumo + "</p>" : "") + itens + "</div>";
   }
 
   var html = "";
-  html += '<a class="side-head side-home" href="' + base + '#/inicio" title="Ir para a página inicial" aria-label="Governo de Goiás, Vieses Comportamentais: ir para a página inicial"><span class="org">Governo de Goiás</span><span class="title">Vieses Comportamentais</span></a>';
+  html += '<a class="side-head side-home" href="' + base + '#/inicio" title="Ir para a página inicial" aria-label="Governo de Goiás, Ciências Comportamentais: ir para a página inicial"><span class="org">Governo de Goiás</span><span class="title">Ciências Comportamentais</span></a>';
   html += '<div class="tabs" role="navigation" aria-label="Guias do site">' +
     '<a href="index.html"' + (window.PAGE === "guia" ? ' aria-current="page"' : "") + ">Guia</a>" +
     '<a href="baralho.html"' + (window.PAGE === "baralho" ? ' aria-current="page"' : "") + ">Baralho</a></div>";
   html += '<nav class="nav" aria-label="Menu principal">';
   html += link("inicio", "Início");
-  html += '<div class="sec-label">OS VIESES</div>';
-  S.grupos.forEach(function (g) {
-    var itens = S.vieses.filter(function (v) { return v.grupo === g.id; })
-      .map(function (v) { return link("v/" + v.slug, v.nome, '<span class="num">' + String(v.carta).padStart(2, "0") + "</span>"); }).join("");
-    html += grupo(g.id, g.nome, g.resumo, itens);
-  });
-  html += '<div class="sec-label">CIÊNCIAS COMPORTAMENTAIS</div>';
-  html += grupo("fundamentos", "Fundamentos", "Modelos, evidências e ética: como o comportamento muda e o que se sabe sobre intervir.",
-    FUND.map(function (p) { return link(p[0], p[1]); }).join(""));
-  html += '<div class="sec-label">NA PRÁTICA</div>';
+  function viesesMenu() {
+    var blocos = S.grupos.map(function (g) {
+      var itens = S.vieses.filter(function (v) { return v.grupo === g.id; })
+        .map(function (v) { return link("v/" + v.slug, v.nome, '<span class="num">' + String(v.carta).padStart(2, "0") + "</span>"); }).join("");
+      return grupo(g.id, g.nome, "", itens, 2);
+    }).join("");
+    return grupo("vieses", "Vieses e atalhos mentais", "", link("f/vieses", "Visão geral dos vieses") + blocos, 1);
+  }
+  html += '<div class="sec-label">ENTENDER</div>';
+  html += grupo("fundamentos", "Fundamentos", "Vieses, modelos, evidências e ética: o que explica e o que muda o comportamento.",
+    FUND.map(function (p) { return p === "VIESES" ? viesesMenu() : link(p[0], p[1]); }).join(""));
+  html += '<div class="sec-label">APLICAR</div>';
   html += grupo("metodologias", "Metodologias", "TESTE, BASIC, CINCO e outras: como estruturar um projeto de aplicação.",
     METOD.map(function (p) { return link(p[0], p[1]); }).join("") + link("metodo", "Os sete passos do baralho"));
   html += grupo("pratica", "Ferramentas por fase", "Instrumentos para diagnosticar, desenhar e testar melhorias, organizados pelas fases do projeto.",
     PRATICA.map(function (p) { return link("p/" + p[0], p[1]); }).join(""));
-  html += '<div class="sec-label">APROFUNDAR</div>';
-  html += link("limites", "Limites da evidência");
+  html += '<div class="sec-label">CONSULTAR</div>';
   html += link("referencias", "Referências");
   html += "</nav>";
 
@@ -82,8 +85,8 @@
       var aberto = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", aberto ? "false" : "true");
       document.getElementById(btn.getAttribute("aria-controls")).classList.toggle("open", !aberto);
-      var landing = { pratica: 1, fundamentos: 1, metodologias: 1 };
-      if (!aberto && onGuia) location.hash = landing[btn.dataset.grp] ? "#/" + btn.dataset.grp : "#/g/" + btn.dataset.grp;
+      var landing = { pratica: "pratica", fundamentos: "fundamentos", metodologias: "metodologias", vieses: "f/vieses" };
+      if (!aberto && onGuia) location.hash = "#/" + (landing[btn.dataset.grp] || "g/" + btn.dataset.grp);
       return;
     }
     if (e.target.closest("a[data-route], .side-home")) fechar();
@@ -95,17 +98,20 @@
       if (a.getAttribute("data-route") === rota) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     });
-    var alvo = side.querySelector('a[data-route="' + rota + '"]');
-    var grpId = null;
-    if (alvo && alvo.closest(".sub")) grpId = alvo.closest(".sub").id.replace("sub-", "");
-    var m = rota.match(/^g\/(.+)$/);
-    if (m) grpId = m[1];
-    if (rota === "pratica" || rota === "fundamentos" || rota === "metodologias") grpId = rota;
-    if (rota === "metodo") grpId = "metodologias";
-    if (grpId) {
-      var b = side.querySelector('[data-grp="' + grpId + '"]');
-      if (b) { b.setAttribute("aria-expanded", "true"); document.getElementById("sub-" + grpId).classList.add("open"); }
+    Array.prototype.forEach.call(side.querySelectorAll(".grp-btn"), function (b) { b.setAttribute("aria-expanded", "false"); });
+    Array.prototype.forEach.call(side.querySelectorAll(".sub.open"), function (s) { s.classList.remove("open"); });
+    function abrir(id) {
+      var b = side.querySelector('[data-grp="' + id + '"]'), s = document.getElementById("sub-" + id);
+      if (b && s) { b.setAttribute("aria-expanded", "true"); s.classList.add("open"); }
     }
+    var alvo = side.querySelector('a[data-route="' + rota + '"]');
+    var no = alvo;
+    while (no && no.closest(".sub")) { var sub = no.closest(".sub"); abrir(sub.id.replace("sub-", "")); no = sub.parentNode.closest ? sub.parentNode.closest(".sub") : null; }
+    var m = rota.match(/^g\/(.+)$/);
+    if (m) { abrir(m[1]); abrir("vieses"); abrir("fundamentos"); }
+    if (rota === "f/vieses") { abrir("vieses"); abrir("fundamentos"); }
+    if (rota === "pratica" || rota === "fundamentos" || rota === "metodologias") abrir(rota);
+    if (rota === "metodo") abrir("metodologias");
   };
 })();
 
