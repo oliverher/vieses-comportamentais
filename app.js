@@ -313,7 +313,8 @@
     if (window.TRILHA) window.TRILHA.decorar(h, el);
     window.marcarMenu(h);
     var vw = document.querySelector(".voltar-wrap");
-    if (vw) vw.hidden = (h === "inicio");
+    /* o Voltar do topo só aparece quando não há botão de voltar no rodapé da página */
+    if (vw) vw.hidden = (h === "inicio") || !!el.querySelector(".pager > a:first-child");
     var t = $("h1", el);
     window.scrollTo(0, 0);
     if (t) { t.focus({ preventScroll: true }); }
