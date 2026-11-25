@@ -20,7 +20,10 @@
       '<h1 class="h1" tabindex="-1">Ciências comportamentais: como as pessoas decidem e como desenhar serviços melhores</h1>' +
       '<p class="lead">As pessoas não decidem como uma calculadora perfeita. Decidem com atalhos, hábitos e emoções, e pelo que está à frente delas no momento. Entender isso, e testar o que funciona, ajuda a desenhar serviços públicos para o cidadão como ele é.</p>' +
       '<div class="quote">Quem desenha um serviço também desenha uma decisão. A pergunta é se ele a desenhou de propósito.</div>' +
+      '<div class="grid2">' +
+      '<div class="card"><span class="tag">Quero estudar</span><h3>Siga a trilha de estudo</h3><p>Seis etapas, do básico à aplicação, com roteiro, perguntas de revisão e um mini-projeto para o seu órgão.</p><p style="margin:0"><a class="btn primary" href="#/trilha">Começar a trilha</a></p></div>' +
       '<div class="card gold"><span class="tag">Tenho um problema</span><h3>Comece pelo diagnóstico rápido</h3><p>Marque os sintomas do seu serviço, como desistência, atraso ou erro nos formulários, e veja quais vieses podem estar envolvidos.</p><p style="margin:0"><a class="btn primary" href="#/p/diagnostico">Fazer o diagnóstico</a></p></div>' +
+      "</div>" +
       '<h2 class="sec">Três caminhos</h2>' +
       '<div class="grid3">' +
       '<a class="linkcard" href="#/fundamentos"><span class="n">1 · Entender</span><h3>Fundamentos</h3><p>Vieses e atalhos mentais, modelos como o COM-B, arquitetura de escolhas, ética e o que se sabe sobre servidores públicos.</p></a>' +
@@ -307,6 +310,7 @@
     else html = paginas.nada();
     el.innerHTML = trilho(h) + html;
     if (init) init();
+    if (window.TRILHA) window.TRILHA.decorar(h, el);
     window.marcarMenu(h);
     var vw = document.querySelector(".voltar-wrap");
     if (vw) vw.hidden = (h === "inicio");

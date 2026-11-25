@@ -58,6 +58,12 @@
     }).join("");
     return grupo("vieses", "Vieses e atalhos mentais", "", link("f/vieses", "Visão geral dos vieses") + blocos, 1);
   }
+  var TR = window.TRILHA ? window.TRILHA.etapas : [];
+  if (TR.length) {
+    html += '<div class="sec-label">ESTUDAR</div>';
+    html += grupo("trilha", "Trilha de estudo", "Seis etapas, do básico à aplicação, com revisão e mini-projeto.",
+      link("trilha", "Visão geral") + TR.map(function (e) { return link("trilha/" + e.n, e.n + " · " + e.nome); }).join(""));
+  }
   html += '<div class="sec-label">ENTENDER</div>';
   html += grupo("fundamentos", "Fundamentos", "Vieses, modelos, evidências e ética: o que explica e o que muda o comportamento.",
     FUND.map(function (p) { return p === "VIESES" ? viesesMenu() : link(p[0], p[1]); }).join(""));
@@ -85,7 +91,7 @@
       var aberto = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", aberto ? "false" : "true");
       document.getElementById(btn.getAttribute("aria-controls")).classList.toggle("open", !aberto);
-      var landing = { pratica: "pratica", fundamentos: "fundamentos", metodologias: "metodologias", vieses: "f/vieses" };
+      var landing = { trilha: "trilha", pratica: "pratica", fundamentos: "fundamentos", metodologias: "metodologias", vieses: "f/vieses" };
       if (!aberto && onGuia) location.hash = "#/" + (landing[btn.dataset.grp] || "g/" + btn.dataset.grp);
       return;
     }
@@ -112,6 +118,7 @@
     if (rota === "f/vieses") { abrir("vieses"); abrir("fundamentos"); }
     if (rota === "pratica" || rota === "fundamentos" || rota === "metodologias") abrir(rota);
     if (rota === "metodo") abrir("metodologias");
+    if (rota === "trilha" || /^trilha\//.test(rota)) abrir("trilha");
   };
 })();
 
